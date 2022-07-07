@@ -74,6 +74,7 @@ List<dynamic> readAll(String event) {
   // appSocket.on(event, (data) => print(data));
 
   print("check: $returnedData");
+  print("ads");
   return returnedData;
 }
 
