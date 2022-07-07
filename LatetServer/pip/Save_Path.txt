@@ -1,0 +1,3 @@
+save dir pip in the following path: 
+[global]
+target=C:\Users\username\Desktop\Latet-Server\venv\Lib\site-packages
