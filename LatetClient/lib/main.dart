@@ -67,9 +67,6 @@ List<dynamic> readAll(String event) {
     returnedData = [(data)];
   });
   appSocket.on(event, (data) {
-    print("hello");
-    print("hello");
-    print("hello");
     returnedData = [(data)];
   });
   // appSocket.on(event, (data) => print(data));
