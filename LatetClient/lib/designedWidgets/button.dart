@@ -59,9 +59,9 @@ class Button extends ElevatedButton {
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
@@ -100,9 +100,9 @@ class Button extends ElevatedButton {
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
@@ -143,9 +143,9 @@ class Button extends ElevatedButton {
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),

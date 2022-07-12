@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/client_request.dart';
+import 'package:latet/volunteers_data.dart';
 import 'package:latet/win/units_win.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -31,6 +32,8 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
+final VolunteersData recievedVolunteersData = VolunteersData([]);
+
 // For data write: web
 final IO.Socket webSocket = IO.io(
     'http://localhost:5000',
@@ -57,22 +60,27 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-List<dynamic> readAll(String event) {
+void readAll(String event) {
   /// readAll (Read) for all clients from server - app & web.
   ///
   /// On event type [event] - read data [data].
-  print("New data read from event: $event");
-  List<dynamic> returnedData = [];
-  webSocket.on(event, (data) {
-    returnedData = [(data)];
-  });
-  appSocket.on(event, (data) {
-    returnedData = [(data)];
-  });
+
   // appSocket.on(event, (data) => print(data));
 
-  print("check: $returnedData");
-  return returnedData;
+  appSocket.on(event, (data) {
+    print("test $data");
+    recievedVolunteersData.setVolunteersList(data);
+  });
+
+  // appSocket.on(event, (data) => print(data));
+  // print("New data read from event: $event");
+  // appSocket.on(event, (data) {
+  //   if (kDebugMode) {
+  //     print(data);
+  //   }
+  //   final dataList = data as List;
+  //   setx(dataList);
+  // });
 }
 
 void main() => runApp(LatetApp());
@@ -85,11 +93,11 @@ class LatetApp extends StatelessWidget {
     return MaterialApp(
         // ThemeData is the Graphics for all windows
         theme: ThemeData(
-            scaffoldBackgroundColor: Colors.blueGrey[500],
-            appBarTheme: AppBarTheme(
-              color: Colors.blueGrey[900],
+            scaffoldBackgroundColor: Color(0xFF1B2B3F),
+            appBarTheme: const AppBarTheme(
+              color: Color(0xFF1D1E33),
               centerTitle: true,
-              titleTextStyle: const TextStyle(fontSize: 18),
+              titleTextStyle: TextStyle(fontSize: 18),
             )),
         debugShowCheckedModeBanner: false,
         home: UnitsWindow());

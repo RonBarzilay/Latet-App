@@ -6,7 +6,7 @@ import psycopg2
 Variables Declaration
 """
 
-
+# Connect to the DBLatet
 def connect_to_database():
     connection = psycopg2.connect(user="postgres",
                                   password="1212",
@@ -23,8 +23,8 @@ class DBLatet:
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:1212@localhost/latetdb"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db = SQLAlchemy(app)
+    print("DB instance was created")
 
-    # Connect to the db
 
     def insert_into_responsible_table(army_id, id, first_name, last_name, unit, manager_army_id):
         try:

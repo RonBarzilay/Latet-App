@@ -34,7 +34,7 @@ class CustomizedCard extends Card {
     required int volunteerId,
   })  : assert(elevation == null || elevation >= 0.0),
         super(
-          color: Colors.teal,
+          color: Color(0xFF1D1E33),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7.0),
           ),
