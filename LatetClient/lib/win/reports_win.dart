@@ -76,7 +76,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
   ];
 
   Widget build(BuildContext context) {
-    // print("aaaa: ${this.recievedVolunteersData}");
+    print(recievedVolunteersData.getvolunteersListLength());
 
     // void generateCard(List<VolunteersData> volunteers){
     //   for (int i=0; i<volunteers.length; i++) {

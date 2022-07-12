@@ -32,7 +32,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-final VolunteersData recievedVolunteersData = VolunteersData([]);
+final recievedVolunteersData = VolunteersData([]);
 
 // For data write: web
 final IO.Socket webSocket = IO.io(
@@ -69,6 +69,9 @@ void readAll(String event) {
 
   appSocket.on(event, (data) {
     print("test $data");
+    // setState(() {
+    //   recievedVolunteersData.setVolunteersList(data);
+    // });
     recievedVolunteersData.setVolunteersList(data);
   });
 
