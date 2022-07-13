@@ -18,58 +18,70 @@ class ReportsWindow extends StatefulWidget {
 // }
 
 class _ReportsWindowState extends State<ReportsWindow> {
-  List<CustomizedCard> cards = [
-    CustomizedCard(
-      fullName: "משה פרץ",
-      volunteerId: 123123123,
-    ),
-    CustomizedCard(
-      fullName: "אריאל אילוז",
-      volunteerId: 456456456,
-    ),
-    CustomizedCard(
-      fullName: "רוןןןןןןן ברזילי",
-      volunteerId: 789789789,
-    ),
-    CustomizedCard(
-      fullName: "מאור זוהרררררררררררררררררר",
-      volunteerId: 101101101,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "יוסף אביחי שם-טוב",
-      volunteerId: 222222222,
-    ),
-  ];
-
   Widget build(BuildContext context) {
+    List<CustomizedCard> cards = [
+      CustomizedCard(
+        fullName: "משה פרץ",
+        volunteerId: 123123123,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "אריאל אילוז",
+        volunteerId: 456456456,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "רוןןןןןןן ברזילי",
+        volunteerId: 789789789,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "מאור זוהרררררררררררררררררר",
+        volunteerId: 101101101,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "עדי ויינשטיין",
+        volunteerId: 111111111,
+        context: context,
+      ),
+      CustomizedCard(
+        fullName: "יוסף אביחי שם-טוב",
+        volunteerId: 222222222,
+        context: context,
+      ),
+    ];
+
     return Scaffold(
         appBar: AppBar(
           title: Text(

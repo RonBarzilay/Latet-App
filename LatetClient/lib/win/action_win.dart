@@ -28,7 +28,6 @@ class ActionWindow extends StatelessWidget {
             readAll("get_volunteers_cards");
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const ReportsWindow();
-              // } else if (actionType == 'דיווח נוכחות') {}
             }));
           }
         },
