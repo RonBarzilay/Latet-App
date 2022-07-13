@@ -32,7 +32,13 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-final recievedVolunteersData = VolunteersData([]);
+final volunteersData = VolunteersData([]);
+final volunteersDataNotifier = ValueNotifier<VolunteersData>(volunteersData);
+
+//
+// final v = VolunteersData([]);
+// ValueNotifier<VolunteersData> recievedVolunteersData =
+//     ValueNotifier<VolunteersData>(v);
 
 // For data write: web
 final IO.Socket webSocket = IO.io(
@@ -60,31 +66,32 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-void readAll(String event) {
-  /// readAll (Read) for all clients from server - app & web.
-  ///
-  /// On event type [event] - read data [data].
-
-  // appSocket.on(event, (data) => print(data));
-
-  appSocket.on(event, (data) {
-    print("test $data");
-    // setState(() {
-    //   recievedVolunteersData.setVolunteersList(data);
-    // });
-    recievedVolunteersData.setVolunteersList(data);
-  });
-
-  // appSocket.on(event, (data) => print(data));
-  // print("New data read from event: $event");
-  // appSocket.on(event, (data) {
-  //   if (kDebugMode) {
-  //     print(data);
-  //   }
-  //   final dataList = data as List;
-  //   setx(dataList);
-  // });
-}
+// void readAll(String event) {
+//   /// readAll (Read) for all clients from server - app & web.
+//   ///
+//   /// On event type [event] - read data [data].
+//
+//   // appSocket.on(event, (data) => print(data));
+//
+//   appSocket.on(event, (data) {
+//     print("test $data");
+//     // setState(() {
+//     //   recievedVolunteersData.setVolunteersList(data);
+//     // });
+//
+//     recievedVolunteersData.setVolunteersList(data);
+//   });
+//
+//   // appSocket.on(event, (data) => print(data));
+//   // print("New data read from event: $event");
+//   // appSocket.on(event, (data) {
+//   //   if (kDebugMode) {
+//   //     print(data);
+//   //   }
+//   //   final dataList = data as List;
+//   //   setx(dataList);
+//   // });
+// }
 
 void main() => runApp(LatetApp());
 
@@ -98,9 +105,9 @@ class LatetApp extends StatelessWidget {
         theme: ThemeData(
             scaffoldBackgroundColor: Color(0xFF1B2B3F),
             appBarTheme: const AppBarTheme(
-              color: Color(0xFF1D1E33),
+              color: Color(0x6D1D1E33),
               centerTitle: true,
-              titleTextStyle: TextStyle(fontSize: 18),
+              titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
             )),
         debugShowCheckedModeBanner: false,
         home: UnitsWindow());

@@ -16,7 +16,7 @@ class ActionWindow extends StatelessWidget {
       ///
       /// Sets the populationType [populationType] and show the label as [populationType].
       return Button.actionIconBuiltIn(
-        onPressed: () async {
+        onPressed: () {
           // For writing user's choice to server
           request.setAction(actionType);
           String encodedRequest = jsonEncode(request);
@@ -25,12 +25,23 @@ class ActionWindow extends StatelessWidget {
           // todo: check which window should be displayed depends on actionType
           if (request.getAction() == 'דיווח נוכחות') {
             emitAll('reports', request);
-            readAll('get_volunteers_cards');
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ReportsWindow(recievedVolunteersData);
-              // } else if (actionType == 'דיווח נוכחות') {}
-            }));
+            // print(_myString.value);
+
+            // _myString.value = 'some value';
+
+            // volunteersData.set_volunteersList(data);
+
+            appSocket.on('get_volunteers_cards', (data) {
+              volunteersDataNotifier.value.set_volunteersList(data);
+              print("a");
+            });
+            print("b");
           }
+
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return ReportsWindow(volunteersData);
+            // } else if (actionType == 'דיווח נוכחות') {}
+          }));
         },
         icon: Icon(
           icon,
