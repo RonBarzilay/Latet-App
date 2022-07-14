@@ -32,6 +32,7 @@ class ActionWindow extends StatelessWidget {
             // volunteersData.set_volunteersList(data);
 
             appSocket.on('get_volunteers_cards', (data) {
+              print(data[0][1]);
               volunteersDataNotifier.value.set_volunteersList(data);
               print("a");
             });
