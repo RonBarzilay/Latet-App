@@ -31,7 +31,7 @@ class VolunteerDetails extends Card {
     required DateTime birthday,
     required int age,
     required String city,
-    required DateTime startDateInsurance,
+    required startDateInsurance,
     required DateTime endDateInsurance,
     required String manager,
     required String unit,

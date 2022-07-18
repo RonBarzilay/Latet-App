@@ -96,11 +96,31 @@ class DBLatet:
                 print("PostgreSQL connection is closed")
                 return volunteers
 
+    def select_details_from_volunteer_table(self, id):
+        try:
+            connection, cursor = connect_to_database()
+            cursor.execute(
+                f'SELECT unit, birth_date,city, insurance_start_date,insurance_end_date,association,limit_hours, notes, population_type  FROM "Volunteer" WHERE "id"={id} ORDER BY last_name ASC')
+            connection.commit()
+            print("total rows: ", cursor.rowcount)
+            volunteers = cursor.fetchall()
+        except (Exception, psycopg2.Error) as error:
+            print("Failed to select record into Volunteer table", error)
+        finally:
+            # closing database connection.
+            if connection:
+                cursor.close()
+                connection.close()
+                print("PostgreSQL connection is closed")
+                return volunteers
+
+
 def instert_into_volunteers_table(volunteer):
         try:
             connection, cursor = connect_to_database()
             cursor.execute(
-                'INSERT INTO volunteer (army_id,id,first_name,last_name,unit,responsible_id,birth_date,age,location,start_of_insurance,end_of_insurance,id_manager,)')
+                'INSERT INTO volunteer (army_id,id,first_name,last_name,unit,responsible_id,birth_date,age,location,'
+                'start_of_insurance,end_of_insurance,id_manager,)')
 
         except (Exception, psycopg2.Error) as error:
             print("Failed to insert record into responsible table", error)

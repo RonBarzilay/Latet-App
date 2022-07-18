@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-// For data write: web
+List<dynamic> returnedData = []; // For data write: web
 final IO.Socket webSocket = IO.io(
     'http://localhost:5000',
     IO.OptionBuilder()
@@ -57,22 +59,23 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-List<dynamic> readAll(String event) {
+Future<List<dynamic>> readAll(String event) async {
   /// readAll (Read) for all clients from server - app & web.
   ///
   /// On event type [event] - read data [data].
-  print("New data read from event: $event");
-  List<dynamic> returnedData = [];
-  webSocket.on(event, (data) {
-    returnedData = [(data)];
-  });
-  appSocket.on(event, (data) {
-    returnedData = [(data)];
-  });
-  // appSocket.on(event, (data) => print(data));
 
-  print("check: $returnedData");
-  return returnedData;
+  final completer = Completer<List<dynamic>>();
+  print("New data read from event: $event");
+  // webSocket.on(event, (dynamic data) {
+  //   print(data);
+  //   returnedData = data;
+  // });
+  appSocket.on(event, (data) {
+    print(data);
+    completer.complete(data);
+  });
+
+  return completer.future;
 }
 
 void main() => runApp(LatetApp());

@@ -20,6 +20,8 @@ db = DBLatet()
 def get_volunteers(unit, populationType):
     return db.select_from_volunteer_table(unit, populationType)
 
+def get_voluteers_details(id):
+    return db.select_details_from_volunteer_table(id)
 
 class Logic:
     def __init__(self):

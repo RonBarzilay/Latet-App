@@ -25,7 +25,8 @@ class ActionWindow extends StatelessWidget {
           // todo: check which window should be displayed depends on actionType
           if (request.getAction() == 'דיווח נוכחות') {
             emitAll('reports', request);
-            readAll("get_volunteers_cards");
+            final resultList = await readAll("get_volunteers_cards");
+            print("The list is: $resultList");
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const ReportsWindow();
             }));
