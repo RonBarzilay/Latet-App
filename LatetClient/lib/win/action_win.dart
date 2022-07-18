@@ -5,9 +5,20 @@ import 'package:latet/designedWidgets/button.dart';
 import 'package:latet/main.dart';
 import 'package:latet/win/reports_win.dart';
 
-class ActionWindow extends StatelessWidget {
+int size(List<dynamic> data) {
+  int counter = 0;
+  data.forEach((element) => counter++);
+  return counter;
+}
+
+class ActionWindow extends StatefulWidget {
   const ActionWindow({Key? key}) : super(key: key);
 
+  @override
+  State<ActionWindow> createState() => _ActionWindowState();
+}
+
+class _ActionWindowState extends State<ActionWindow> {
   @override
   Widget build(BuildContext context) {
     Widget actionButton(String actionType, IconData icon) {
@@ -16,7 +27,7 @@ class ActionWindow extends StatelessWidget {
       ///
       /// Sets the populationType [populationType] and show the label as [populationType].
       return Button.actionIconBuiltIn(
-        onPressed: () {
+        onPressed: () async {
           // For writing user's choice to server
           request.setAction(actionType);
           String encodedRequest = jsonEncode(request);
@@ -24,25 +35,18 @@ class ActionWindow extends StatelessWidget {
           print(request.toString());
           // todo: check which window should be displayed depends on actionType
           if (request.getAction() == 'דיווח נוכחות') {
-            emitAll('reports', request);
-            // print(_myString.value);
+            // } else if (actionType == 'דיווח נוכחות') {}
 
-            // _myString.value = 'some value';
+            emitAll('reports', request);
+            volunteers = await readAll('get_volunteers_cards');
 
             // volunteersData.set_volunteersList(data);
-
-            appSocket.on('get_volunteers_cards', (data) {
-              print(data[0][1]);
-              volunteersDataNotifier.value.set_volunteersList(data);
-              print("a");
-            });
-            print("b");
+            // print(volunteersDataNotifier.value);
+            // print value on change
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ReportsWindow(volunteers);
+            }));
           }
-
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return ReportsWindow(volunteersData);
-            // } else if (actionType == 'דיווח נוכחות') {}
-          }));
         },
         icon: Icon(
           icon,

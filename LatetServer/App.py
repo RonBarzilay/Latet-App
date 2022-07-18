@@ -1,4 +1,6 @@
 import datetime
+from json import dumps
+import json
 from flask_socketio import SocketIO
 from flask import request
 from Objects.Client import Client
@@ -51,7 +53,6 @@ def disconnect():
 @socketio.on("reports")
 def return_reports(data):
     socketio.emit('get_volunteers_cards', get_volunteers("'" + data['unit'] + "'", "'" + data['populationType'] + "'"))
-
 
 # print(data)
     # match data:

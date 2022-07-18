@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/customized_card.dart';
 import 'package:latet/main.dart';
-import 'package:latet/volunteers_data.dart';
 
 class ReportsWindow extends StatefulWidget {
-  const ReportsWindow(VolunteersData recievedVolunteersData, {Key? key})
-      : super(key: key);
+  const ReportsWindow(List<dynamic> volunteers, {Key? key}) : super(key: key);
 
   @override
   State<ReportsWindow> createState() => _ReportsWindowState();
@@ -76,6 +74,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
   ];
 
   Widget build(BuildContext context) {
+    print("reports win data $volunteers");
     // print(recievedVolunteersData.getVolunteersListLength());
     // void generateCard(List<VolunteersData> volunteers){
     //   for (int i=0; i<volunteers.length; i++) {

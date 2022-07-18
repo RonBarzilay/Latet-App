@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/client_request.dart';
-import 'package:latet/volunteers_data.dart';
 import 'package:latet/win/units_win.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -32,8 +33,8 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-final volunteersData = VolunteersData([]);
-final volunteersDataNotifier = ValueNotifier<VolunteersData>(volunteersData);
+// TODO: CHANGE TO LIST FO VOLUNTEERS
+List<dynamic> volunteers = [];
 
 //
 // final v = VolunteersData([]);
@@ -66,21 +67,32 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-// void readAll(String event) {
-//   /// readAll (Read) for all clients from server - app & web.
-//   ///
-//   /// On event type [event] - read data [data].
-//
-//   // appSocket.on(event, (data) => print(data));
-//
-//   appSocket.on(event, (data) {
-//     print("test $data");
-//     // setState(() {
-//     //   recievedVolunteersData.setVolunteersList(data);
-//     // });
-//
-//     recievedVolunteersData.setVolunteersList(data);
-//   });
+Future<List<dynamic>> readAll(String event) async {
+  /// readAll (Read) for all clients from server - app & web.
+  ///
+  /// On event type [event] - read data [data].
+
+  // appSocket.on(event, (data) => print(data));
+
+  Completer<List<dynamic>> completer = Completer<List<dynamic>>();
+
+  appSocket.on(event, (data) {
+    print('appSocket');
+    completer.complete(data);
+  });
+  // setState(() {
+  //   recievedVolunteersData.setVolunteersList(data);
+  // });
+
+  webSocket.on(event, (data) {
+    completer.complete(data);
+    print('webSocket');
+    // setState(() {
+    //   recievedVolunteersData.setVolunteersList(data);
+    // });
+  });
+  return completer.future;
+}
 //
 //   // appSocket.on(event, (data) => print(data));
 //   // print("New data read from event: $event");

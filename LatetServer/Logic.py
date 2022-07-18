@@ -1,3 +1,5 @@
+import json
+import datetime
 from DB.DBLatet import *
 from Objects.Report import *
 
@@ -17,8 +19,28 @@ db = DBLatet()
 '''
 
 
+def serialize_volunteers_data(volunteers_list):
+    '''
+    This function gets input of all volunteers as a list from db and make sure
+    all items can be serialize
+    :param volunteers_list:
+    :return: volunteers_list serialized
+    '''
+    for vol_index, volunteer in enumerate(volunteers_list):
+        volunteers_list[vol_index] = list(volunteer)
+        for item_index, item in enumerate(volunteer):
+            if item is None:
+                volunteers_list[vol_index][item_index] = ""
+            if isinstance(item, datetime.date):
+                volunteers_list[vol_index][item_index] = json.dumps(item, indent=4, sort_keys=True, default=str)
+    return volunteers_list
+
+
 def get_volunteers(unit, populationType):
-    return db.select_from_volunteer_table(unit, populationType)
+    return serialize_volunteers_data(db.select_from_volunteer_table(unit, populationType))
+
+
+
 
 
 class Logic:
