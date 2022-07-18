@@ -58,6 +58,7 @@ class _ActionWindowState extends State<ActionWindow> {
             final dynamicVolunteers = await readAll('get_volunteers_cards');
             List<Volunteer> volunteers =
                 fromDynamicToVolunteer(dynamicVolunteers);
+
             // volunteersData.set_volunteersList(data);
             // print(volunteersDataNotifier.value);
             // print value on change

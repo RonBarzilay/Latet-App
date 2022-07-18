@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/customized_card.dart';
 import 'package:latet/main.dart';
+import 'package:latet/volunteer.dart';
 
 class ReportsWindow extends StatefulWidget {
-  final List<dynamic> volunteers;
+  final List<Volunteer> volunteers;
   const ReportsWindow({Key? key, required this.volunteers}) : super(key: key);
   @override
   State<ReportsWindow> createState() => _ReportsWindowState();
@@ -16,10 +17,18 @@ class ReportsWindow extends StatefulWidget {
 //   emitAll('checkVolStatus', vol_id);
 //   return true;
 // }
-// void volunteersTo
 
 class _ReportsWindowState extends State<ReportsWindow> {
   List<CustomizedCard> cards = [];
+
+  void volunteersToCustomizedCard(List<Volunteer> volunteers) {
+    for (var element in volunteers) {
+      CustomizedCard tempCard = CustomizedCard(
+          fullName: "${element.firstName} ${element.lastName}",
+          volunteerId: element.id);
+      cards.add(tempCard);
+    }
+  }
 
   Widget build(BuildContext context) {
     // print("helloooooooooo ${widget.volunteers.toString()}");
@@ -34,7 +43,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
     //     )
     //   }
     // }
-
+    volunteersToCustomizedCard(widget.volunteers);
     return Scaffold(
         appBar: AppBar(
           title: Text(

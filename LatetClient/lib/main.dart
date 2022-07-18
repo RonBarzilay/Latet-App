@@ -33,7 +33,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-// TODO: CHANGE TO LIST FO VOLUNTEERS
+Completer<List<dynamic>> completer = Completer<List<dynamic>>();
 
 //
 // final v = VolunteersData([]);
@@ -73,22 +73,14 @@ Future<List<dynamic>> readAll(String event) async {
 
   // appSocket.on(event, (data) => print(data));
 
-  Completer<List<dynamic>> completer = Completer<List<dynamic>>();
-
   appSocket.on(event, (data) {
     print('appSocket');
     completer.complete(data);
   });
-  // setState(() {
-  //   recievedVolunteersData.setVolunteersList(data);
-  // });
 
   webSocket.on(event, (data) {
-    completer.complete(data);
     print('webSocket');
-    // setState(() {
-    //   recievedVolunteersData.setVolunteersList(data);
-    // });
+    completer.complete(data);
   });
   return completer.future;
 }
@@ -114,13 +106,13 @@ class LatetApp extends StatelessWidget {
     return MaterialApp(
         // ThemeData is the Graphics for all windows
         theme: ThemeData(
-            scaffoldBackgroundColor: Color(0xFF1B2B3F),
+            scaffoldBackgroundColor: const Color(0xFF1B2B3F),
             appBarTheme: const AppBarTheme(
               color: Color(0x6D1D1E33),
               centerTitle: true,
               titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
             )),
         debugShowCheckedModeBanner: false,
-        home: UnitsWindow());
+        home: const UnitsWindow());
   }
 }
