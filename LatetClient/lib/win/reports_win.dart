@@ -4,8 +4,8 @@ import 'package:latet/designedWidgets/customized_card.dart';
 import 'package:latet/main.dart';
 
 class ReportsWindow extends StatefulWidget {
-  const ReportsWindow(List<dynamic> volunteers, {Key? key}) : super(key: key);
-
+  final List<dynamic> volunteers;
+  const ReportsWindow({Key? key, required this.volunteers}) : super(key: key);
   @override
   State<ReportsWindow> createState() => _ReportsWindowState();
 }
@@ -18,63 +18,10 @@ class ReportsWindow extends StatefulWidget {
 // }
 
 class _ReportsWindowState extends State<ReportsWindow> {
-  List<CustomizedCard> cards = [
-    CustomizedCard(
-      fullName: "משה פרץ",
-      volunteerId: 123123123,
-    ),
-    CustomizedCard(
-      fullName: "אריאל אילוז",
-      volunteerId: 456456456,
-    ),
-    CustomizedCard(
-      fullName: "רוןןןןןןן ברזילי",
-      volunteerId: 789789789,
-    ),
-    CustomizedCard(
-      fullName: "מאור זוהרררררררררררררררררר",
-      volunteerId: 101101101,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "יעקב סעדו",
-      volunteerId: 1515155,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "עדי ויינשטיין",
-      volunteerId: 111111111,
-    ),
-    CustomizedCard(
-      fullName: "יוסף אביחי שם-טוב",
-      volunteerId: 222222222,
-    ),
-  ];
+  List<CustomizedCard> cards = [];
 
   Widget build(BuildContext context) {
-    print("reports win data $volunteers");
+    // print("helloooooooooo ${widget.volunteers.toString()}");
     // print(recievedVolunteersData.getVolunteersListLength());
     // void generateCard(List<VolunteersData> volunteers){
     //   for (int i=0; i<volunteers.length; i++) {

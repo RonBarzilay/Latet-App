@@ -34,7 +34,6 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 /// ==============================================
 final request = ClientRequest("", "", "");
 // TODO: CHANGE TO LIST FO VOLUNTEERS
-List<dynamic> volunteers = [];
 
 //
 // final v = VolunteersData([]);

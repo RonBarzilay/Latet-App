@@ -3,12 +3,29 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/button.dart';
 import 'package:latet/main.dart';
+import 'package:latet/volunteer.dart';
 import 'package:latet/win/reports_win.dart';
 
-int size(List<dynamic> data) {
-  int counter = 0;
-  data.forEach((element) => counter++);
-  return counter;
+List<Volunteer> fromDynamicToVolunteer(List<dynamic> dynamicVolunteers) {
+  List<Volunteer> volunteers = [];
+  for (var element in dynamicVolunteers) {
+    Volunteer tempVolunteer = Volunteer(
+        element[0],
+        element[1],
+        element[2],
+        element[3],
+        element[4],
+        element[5],
+        element[6],
+        element[7],
+        element[8],
+        element[9],
+        element[10],
+        element[11],
+        element[12]);
+    volunteers.add(tempVolunteer);
+  }
+  return volunteers;
 }
 
 class ActionWindow extends StatefulWidget {
@@ -38,13 +55,14 @@ class _ActionWindowState extends State<ActionWindow> {
             // } else if (actionType == 'דיווח נוכחות') {}
 
             emitAll('reports', request);
-            volunteers = await readAll('get_volunteers_cards');
-
+            final dynamicVolunteers = await readAll('get_volunteers_cards');
+            List<Volunteer> volunteers =
+                fromDynamicToVolunteer(dynamicVolunteers);
             // volunteersData.set_volunteersList(data);
             // print(volunteersDataNotifier.value);
             // print value on change
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ReportsWindow(volunteers);
+              return ReportsWindow(volunteers: volunteers);
             }));
           }
         },
