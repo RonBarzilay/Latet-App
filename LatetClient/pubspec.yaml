@@ -39,6 +39,7 @@ dependencies:
   socket_io_client: ^1.0.2
   card_settings: ^3.0.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
