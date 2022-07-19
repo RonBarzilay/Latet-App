@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/client_request.dart';
+import 'package:latet/win/action_win.dart';
+import 'package:latet/win/population_win.dart';
 import 'package:latet/win/units_win.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -33,12 +33,9 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 ///                Global Variables
 /// ==============================================
 final request = ClientRequest("", "", "");
-Completer<List<dynamic>> completer = Completer<List<dynamic>>();
+// Completer<List<dynamic>> completer = Completer<List<dynamic>>();
 
-//
-// final v = VolunteersData([]);
-// ValueNotifier<VolunteersData> recievedVolunteersData =
-//     ValueNotifier<VolunteersData>(v);
+ValueNotifier<List<dynamic>> volNotifier = ValueNotifier<List<dynamic>>([]);
 
 // For data write: web
 final IO.Socket webSocket = IO.io(
@@ -66,7 +63,7 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-Future<List<dynamic>> readAll(String event) async {
+void readAll(String event) {
   /// readAll (Read) for all clients from server - app & web.
   ///
   /// On event type [event] - read data [data].
@@ -75,14 +72,14 @@ Future<List<dynamic>> readAll(String event) async {
 
   appSocket.on(event, (data) {
     print('appSocket');
-    completer.complete(data);
+    volNotifier.value = data;
   });
 
   webSocket.on(event, (data) {
     print('webSocket');
-    completer.complete(data);
+    volNotifier.value = data;
   });
-  return completer.future;
+  // return completer.future;
 }
 //
 //   // appSocket.on(event, (data) => print(data));
@@ -113,6 +110,12 @@ class LatetApp extends StatelessWidget {
               titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
             )),
         debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/UnitsWindow': (context) => const UnitsWindow(),
+          '/PopulationWindow': (context) => const PopulationWindow(),
+          '/ActionWindow': (context) => const ActionWindow(),
+        },
         home: const UnitsWindow());
   }
 }

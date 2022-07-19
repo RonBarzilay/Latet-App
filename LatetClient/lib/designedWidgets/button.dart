@@ -17,9 +17,7 @@ class Button extends ElevatedButton {
     required Widget icon,
     required Widget label,
     Widget? child,
-  })  : assert(icon != null),
-        assert(label != null),
-        super(
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,
@@ -51,8 +49,7 @@ class Button extends ElevatedButton {
     Clip clipBehavior = Clip.none,
     required Widget label,
     Widget? child,
-  })  : assert(label != null),
-        super(
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,

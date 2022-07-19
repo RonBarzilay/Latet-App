@@ -55,18 +55,38 @@ class _ActionWindowState extends State<ActionWindow> {
             // } else if (actionType == 'דיווח נוכחות') {}
 
             emitAll('reports', request);
-            final dynamicVolunteers = await readAll('get_volunteers_cards');
-            List<Volunteer> volunteers =
-                fromDynamicToVolunteer(dynamicVolunteers);
 
-            // volunteersData.set_volunteersList(data);
-            // print(volunteersDataNotifier.value);
-            // print value on change
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ReportsWindow(volunteers: volunteers);
-            }));
+            readAll('get_volunteers_cards');
+
+            // if volNotifier changed, then print value on change
+            volNotifier.addListener(() {
+              print("A change is detected");
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ReportsWindow(
+                    volunteers: fromDynamicToVolunteer(volNotifier.value));
+              }));
+              // Navigator.removeRoute(
+              //   context,
+              // );
+              // Navigator.pushAndRemoveUntil(context,
+              //     MaterialPageRoute(builder: (context) {
+              //   return ReportsWindow(
+              //       volunteers: fromDynamicToVolunteer(volNotifier.value));
+              // }));
+            });
           }
         },
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //     return const ReportsWindow(volunteers: fromDynamicToVolunteer(volNotifier.value));
+        //
+        // }));
+
+        // final dynamicVolunteers = await readAll('get_volunteers_cards');
+
+        // volunteersData.set_volunteersList(data);
+        // print(volunteersDataNotifier.value);
+        // print value on change
         icon: Icon(
           icon,
           size: 30.0,

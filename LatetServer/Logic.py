@@ -22,7 +22,7 @@ db = DBLatet()
 def serialize_volunteers_data(volunteers_list):
     '''
     This function gets input of all volunteers as a list from db and make sure
-    all items can be serialize
+    all items can be serialized
     :param volunteers_list:
     :return: volunteers_list serialized
     '''
