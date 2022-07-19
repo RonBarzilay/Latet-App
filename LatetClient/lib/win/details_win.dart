@@ -27,6 +27,7 @@ class DetailsWindow extends StatelessWidget {
             children: <CardSettingsSection>[
               CardSettingsSection(
                 header: CardSettingsHeader(
+                  color: Color(0xFF1D1E33),
                   label: 'מידע אישי',
                   labelAlign: TextAlign.center,
                 ),

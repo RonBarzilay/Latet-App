@@ -21,11 +21,14 @@ class ReportsWindow extends StatefulWidget {
 class _ReportsWindowState extends State<ReportsWindow> {
   List<CustomizedCard> cards = [];
 
-  void volunteersToCustomizedCard(List<Volunteer> volunteers) {
+  void volunteersToCustomizedCard(
+      List<Volunteer> volunteers, BuildContext context) {
     for (var element in volunteers) {
       CustomizedCard tempCard = CustomizedCard(
-          fullName: "${element.firstName} ${element.lastName}",
-          volunteerId: element.id);
+        fullName: "${element.firstName} ${element.lastName}",
+        volunteerId: element.id,
+        context: context,
+      );
       cards.add(tempCard);
     }
   }
@@ -43,7 +46,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
     //     )
     //   }
     // }
-    volunteersToCustomizedCard(widget.volunteers);
+    volunteersToCustomizedCard(widget.volunteers, context);
     return Scaffold(
         appBar: AppBar(
           title: Text(

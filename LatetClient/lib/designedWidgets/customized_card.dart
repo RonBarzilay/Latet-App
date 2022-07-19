@@ -36,7 +36,7 @@ class CustomizedCard extends Card {
     required BuildContext context,
   })  : assert(elevation == null || elevation >= 0.0),
         super(
-          color: Colors.teal,
+          color: Color(0xFF1D1E33),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7.0),
           ),
@@ -51,7 +51,7 @@ class CustomizedCard extends Card {
                     flex: 1,
                     child: Icon(
                       Icons.account_circle,
-                      color: Colors.green,
+                      color: Color(0xFF4D61BF),
                     ),
                   ),
                   Expanded(
@@ -91,7 +91,7 @@ class CustomizedCard extends Card {
                                 MaterialStateProperty.all(Colors.white38),
                             // minimumSize: MaterialStateProperty.all(Size(20, 12)),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.green)),
+                                MaterialStateProperty.all(Color(0x7B79D825))),
                         child: Text("התחל\nנוכחות",
                             style: buttonTextStyle,
                             textAlign: TextAlign.center),
