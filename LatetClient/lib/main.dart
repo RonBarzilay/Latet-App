@@ -57,6 +57,7 @@ void emitAll(String event, [data]) {
   /// Sets the event type [event] and data [data].
   webSocket.emit(event, data);
   appSocket.emit(event, data);
+  print("");
 }
 
 Future<List<dynamic>> readAll(String event) async {
