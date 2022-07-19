@@ -64,7 +64,7 @@ Future<List<dynamic>> readAll(String event) async {
   ///
   /// On event type [event] - read data [data].
 
-  final completer = Completer<List<dynamic>>();
+  Completer<List<dynamic>> completer = Completer<List<dynamic>>();
   print("New data read from event: $event");
   // webSocket.on(event, (dynamic data) {
   //   print(data);
