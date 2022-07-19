@@ -124,7 +124,6 @@ class Volunteer {
 
   @override
   String toString() {
-    print("");
     return 'Volunteer{id: $_id, firstName: $_firstName, lastName: $_lastName, birthDate: $_birthDate, city: $_city, unit: $_unit, populationType: $_populationType, managerId: $_managerId, insuranceDateStart: $_insuranceDateStart, insuranceDateEnd: $_insuranceDateEnd, limitHours: $_limitHours, association: $_association, notes: $_notes}';
   }
 }
