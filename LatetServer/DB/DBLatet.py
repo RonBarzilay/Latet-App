@@ -6,7 +6,7 @@ import psycopg2
 Variables Declaration
 """
 
-
+# Connect to the DBLatet
 def connect_to_database():
     connection = psycopg2.connect(user="postgres",
                                   password="1212",
@@ -23,8 +23,8 @@ class DBLatet:
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:1212@localhost/latetdb"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db = SQLAlchemy(app)
+    print("DB instance was created")
 
-    # Connect to the db
 
     def insert_into_responsible_table(army_id, id, first_name, last_name, unit, manager_army_id):
         try:
@@ -82,7 +82,13 @@ class DBLatet:
     def select_from_volunteer_table(self, unit, populationType):
         try:
             connection, cursor = connect_to_database()
-            cursor.execute(f'SELECT id, first_name, last_name FROM "Volunteer" WHERE "unit"={unit} AND "population_type"={populationType} ORDER BY last_name ASC')
+            cursor.execute(f'SELECT id, first_name, last_name, birth_date, city, unit, population_type, manager_id, insurance_date_start, insurance_date_end, limit_hours, association, notes FROM "Volunteer" WHERE "unit"={unit} AND "population_type"={populationType} ORDER BY last_name ASC')
+
+            # cursor.execute(f'SELECT id, first_name, last_name, , city, unit, population_type, manager_id, insurance_date_start, insurance_date_end, limit_hours, association, notes FROM "Volunteer" WHERE "unit"={unit} AND "population_type"={populationType} ORDER BY last_name ASC')
+
+            # print()
+
+
             connection.commit()
             print("total rows: ", cursor.rowcount)
             volunteers = cursor.fetchall()

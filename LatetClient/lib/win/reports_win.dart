@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/customized_card.dart';
 import 'package:latet/main.dart';
+import 'package:latet/volunteer.dart';
 
 class ReportsWindow extends StatefulWidget {
-  const ReportsWindow({Key? key}) : super(key: key);
-
+  final List<Volunteer> volunteers;
+  const ReportsWindow({Key? key, required this.volunteers}) : super(key: key);
   @override
   State<ReportsWindow> createState() => _ReportsWindowState();
 }
@@ -18,70 +19,31 @@ class ReportsWindow extends StatefulWidget {
 // }
 
 class _ReportsWindowState extends State<ReportsWindow> {
-  Widget build(BuildContext context) {
-    List<CustomizedCard> cards = [
-      CustomizedCard(
-        fullName: "משה פרץ",
-        volunteerId: 123123123,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "אריאל אילוז",
-        volunteerId: 456456456,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "רוןןןןןןן ברזילי",
-        volunteerId: 789789789,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "מאור זוהרררררררררררררררררר",
-        volunteerId: 101101101,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "עדי ויינשטיין",
-        volunteerId: 111111111,
-        context: context,
-      ),
-      CustomizedCard(
-        fullName: "יוסף אביחי שם-טוב",
-        volunteerId: 222222222,
-        context: context,
-      ),
-    ];
+  List<CustomizedCard> cards = [];
 
+  void volunteersToCustomizedCard(List<Volunteer> volunteers) {
+    for (var element in volunteers) {
+      CustomizedCard tempCard = CustomizedCard(
+          fullName: "${element.firstName} ${element.lastName}",
+          volunteerId: element.id);
+      cards.add(tempCard);
+    }
+  }
+
+  Widget build(BuildContext context) {
+    // print("helloooooooooo ${widget.volunteers.toString()}");
+    // print(recievedVolunteersData.getVolunteersListLength());
+    // void generateCard(List<VolunteersData> volunteers){
+    //   for (int i=0; i<volunteers.length; i++) {
+    //     cards.add(
+    //         CustomizedCard(
+    //           fullName: volunteers[i].get
+    //           volunteerId: 111111111,
+    //         )
+    //     )
+    //   }
+    // }
+    volunteersToCustomizedCard(widget.volunteers);
     return Scaffold(
         appBar: AppBar(
           title: Text(
