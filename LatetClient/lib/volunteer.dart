@@ -110,7 +110,7 @@ class Volunteer {
   String get birthDate => _birthDate;
 
   String get birthDateToView =>
-      DateFormat('dd.mm.yyyy').format(DateFormat('y-MM-dd').parse(_birthDate));
+      DateFormat('dd.MM.yyyy').format(DateFormat('y-MM-dd').parse(_birthDate));
 
   set birthDate(String value) {
     _birthDate = value;
