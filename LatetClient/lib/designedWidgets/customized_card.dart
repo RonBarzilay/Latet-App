@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:latet/volunteer.dart';
+import 'package:latet/win/details_win.dart';
 
 TextStyle buttonTextStyle = const TextStyle(
   fontWeight: FontWeight.bold,
@@ -30,71 +32,84 @@ class CustomizedCard extends Card {
     EdgeInsetsGeometry? margin,
     // bool semanticContainer,
     // required Widget child,
-    required String fullName,
-    required int volunteerId,
+    required Volunteer volunteer,
+    required BuildContext context,
   })  : assert(elevation == null || elevation >= 0.0),
         super(
-          color: Colors.teal,
+          color: Color(0xFF1D1E33),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7.0),
           ),
           key: key,
-          child: Row(
-              textDirection: TextDirection.rtl,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 1,
-                  child: Icon(
-                    Icons.account_circle,
-                    color: Colors.green,
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                      textDirection: TextDirection.rtl,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          fullName,
-                          style: buttonTextStyle,
-                          textAlign: TextAlign.right,
-                          textDirection: TextDirection.rtl,
-                        ),
-                        const SizedBox(height: 3.5),
-                        Text(
-                          "$volunteerId",
-                          style: buttonSubTextStyle,
-                          textAlign: TextAlign.right,
-                          textDirection: TextDirection.rtl,
-                        )
-                      ]),
-                  // style: buttonTextStyle,
-                ),
-                // ),
-                // Row(children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: TextButton(
-                      onPressed: () {
-                        // checkVolStatus(fullName);
-                      },
-                      style: ButtonStyle(
-                          overlayColor:
-                              MaterialStateProperty.all(Colors.white38),
-                          // minimumSize: MaterialStateProperty.all(Size(20, 12)),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.green)),
-                      child: Text("התחל\nנוכחות",
-                          style: buttonTextStyle, textAlign: TextAlign.center),
+          child: TextButton(
+            child: Row(
+                textDirection: TextDirection.rtl,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: Icon(
+                      Icons.account_circle,
+                      color: Color(0xFF4D61BF),
                     ),
                   ),
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                        textDirection: TextDirection.rtl,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            volunteer.fullName,
+                            style: buttonTextStyle,
+                            textAlign: TextAlign.right,
+                            textDirection: TextDirection.rtl,
+                          ),
+                          const SizedBox(height: 3.5),
+                          Text(
+                            volunteer.id.toString(),
+                            style: buttonSubTextStyle,
+                            textAlign: TextAlign.right,
+                            textDirection: TextDirection.rtl,
+                          )
+                        ]),
+                    // style: buttonTextStyle,
+                  ),
+                  // ),
+                  // Row(children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: TextButton(
+                        onPressed: () {
+                          // checkVolStatus(fullName);
+                        },
+                        style: ButtonStyle(
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.white38),
+                            // minimumSize: MaterialStateProperty.all(Size(20, 12)),
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0x7B79D825))),
+                        child: Text("התחל\nנוכחות",
+                            style: buttonTextStyle,
+                            textAlign: TextAlign.center),
+                      ),
+                    ),
+                  ),
+                ]),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetailsWindow(volunteer: volunteer);
+                  },
                 ),
-              ]),
+              );
+            },
+          ),
           //   ],
           // ),
         );
