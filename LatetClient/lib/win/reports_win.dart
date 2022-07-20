@@ -23,10 +23,9 @@ class _ReportsWindowState extends State<ReportsWindow> {
 
   void volunteersToCustomizedCard(
       List<Volunteer> volunteers, BuildContext context) {
-    for (var element in volunteers) {
+    for (var volunteer in volunteers) {
       CustomizedCard tempCard = CustomizedCard(
-        fullName: "${element.firstName} ${element.lastName}",
-        volunteerId: element.id,
+        volunteer: volunteer,
         context: context,
       );
       cards.add(tempCard);

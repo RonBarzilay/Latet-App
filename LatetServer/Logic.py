@@ -32,7 +32,7 @@ def serialize_volunteers_data(volunteers_list):
             if item is None:
                 volunteers_list[vol_index][item_index] = ""
             if isinstance(item, datetime.date):
-                volunteers_list[vol_index][item_index] = json.dumps(item, indent=4, sort_keys=True, default=str)
+                volunteers_list[vol_index][item_index] = json.dumps(item, indent=4, sort_keys=True, default=str).replace('"', '')
     return volunteers_list
 
 

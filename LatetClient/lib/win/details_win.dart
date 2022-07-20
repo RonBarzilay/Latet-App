@@ -1,6 +1,7 @@
 import 'package:card_settings/card_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:latet/volunteer.dart';
 
 TextStyle textStyle = const TextStyle(
   fontWeight: FontWeight.bold,
@@ -10,11 +11,18 @@ TextStyle textStyle = const TextStyle(
   letterSpacing: 0.2,
 );
 
-class DetailsWindow extends StatelessWidget {
-  const DetailsWindow({Key? key}) : super(key: key);
+class DetailsWindow extends StatefulWidget {
+  final Volunteer volunteer;
+  const DetailsWindow({Key? key, required this.volunteer}) : super(key: key);
 
   @override
+  State<DetailsWindow> createState() => _DetailsWindowState();
+}
+
+class _DetailsWindowState extends State<DetailsWindow> {
+  @override
   Widget build(BuildContext context) {
+    final Volunteer volunteer = widget.volunteer;
     return Scaffold(
       appBar: AppBar(
         title: Text('צפייה בתדפיס אישי'),
@@ -28,24 +36,24 @@ class DetailsWindow extends StatelessWidget {
               CardSettingsSection(
                 header: CardSettingsHeader(
                   color: Color(0xFF1D1E33),
-                  label: 'מידע אישי',
+                  label: "מידע אישי",
                   labelAlign: TextAlign.center,
                 ),
                 children: <CardSettingsWidget>[
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":שם פרטי",
+                    unitLabel: " :שם פרטי" + volunteer.firstName,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":שם משפחה",
+                    unitLabel: ":שם משפחה" + volunteer.lastName,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":גיל",
+                    unitLabel: ":גיל" + volunteer.age(),
                   ),
                   CardSettingsText(
                     label: "",
@@ -127,6 +135,13 @@ class DetailsWindow extends StatelessWidget {
   }
 }
 
+//final Volunteer volunteer;
+//   DetailsWindow({Key? key, required this.volunteer}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+
+//   }
 //VolunteerDetails(
 //             firstName: "מאור",
 //             lastName: "זוהר",

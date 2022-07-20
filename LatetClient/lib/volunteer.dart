@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Volunteer {
   late final int _id;
   late final String _firstName;
@@ -45,6 +47,13 @@ class Volunteer {
   }
 
   String get notes => _notes;
+
+  String age() {
+    DateTime birthDay = DateFormat('y-MM-dd').parse(_birthDate);
+    DateTime now = DateTime.now();
+    int age = ((now.difference(birthDay).inDays) / 365).toInt();
+    return age.toString();
+  }
 
   set notes(String value) {
     _notes = value;
@@ -122,6 +131,7 @@ class Volunteer {
     _id = value;
   }
 
+  String get fullName => "$_firstName $_lastName";
   @override
   String toString() {
     return 'Volunteer{id: $_id, firstName: $_firstName, lastName: $_lastName, birthDate: $_birthDate, city: $_city, unit: $_unit, populationType: $_populationType, managerId: $_managerId, insuranceDateStart: $_insuranceDateStart, insuranceDateEnd: $_insuranceDateEnd, limitHours: $_limitHours, association: $_association, notes: $_notes}';

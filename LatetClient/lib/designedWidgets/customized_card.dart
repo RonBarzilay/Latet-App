@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latet/volunteer.dart';
 import 'package:latet/win/details_win.dart';
 
 TextStyle buttonTextStyle = const TextStyle(
@@ -31,8 +32,7 @@ class CustomizedCard extends Card {
     EdgeInsetsGeometry? margin,
     // bool semanticContainer,
     // required Widget child,
-    required String fullName,
-    required int volunteerId,
+    required Volunteer volunteer,
     required BuildContext context,
   })  : assert(elevation == null || elevation >= 0.0),
         super(
@@ -61,14 +61,14 @@ class CustomizedCard extends Card {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            fullName,
+                            volunteer.fullName,
                             style: buttonTextStyle,
                             textAlign: TextAlign.right,
                             textDirection: TextDirection.rtl,
                           ),
                           const SizedBox(height: 3.5),
                           Text(
-                            "$volunteerId",
+                            volunteer.id.toString(),
                             style: buttonSubTextStyle,
                             textAlign: TextAlign.right,
                             textDirection: TextDirection.rtl,
@@ -104,7 +104,7 @@ class CustomizedCard extends Card {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return DetailsWindow();
+                    return DetailsWindow(volunteer: volunteer);
                   },
                 ),
               );

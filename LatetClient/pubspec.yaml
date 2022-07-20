@@ -38,6 +38,7 @@ dependencies:
   async: ^2.8.2
   socket_io_client: ^1.0.2
   card_settings: ^3.0.1
+  intl: ^0.17.0
 
 
 dev_dependencies:
