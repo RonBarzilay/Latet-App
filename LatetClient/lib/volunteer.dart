@@ -51,7 +51,7 @@ class Volunteer {
   String age() {
     DateTime birthDay = DateFormat('y-MM-dd').parse(_birthDate);
     DateTime now = DateTime.now();
-    int age = ((now.difference(birthDay).inDays) / 365).toInt();
+    int age = (now.difference(birthDay).inDays) ~/ 365;
     return age.toString();
   }
 
@@ -108,6 +108,9 @@ class Volunteer {
   }
 
   String get birthDate => _birthDate;
+
+  String get birthDateToView =>
+      DateFormat('dd.MM.yyyy').format(DateFormat('y-MM-dd').parse(_birthDate));
 
   set birthDate(String value) {
     _birthDate = value;

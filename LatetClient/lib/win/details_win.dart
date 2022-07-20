@@ -41,29 +41,28 @@ class _DetailsWindowState extends State<DetailsWindow> {
                 ),
                 children: <CardSettingsWidget>[
                   CardSettingsText(
+                      label: "",
+                      style: textStyle,
+                      unitLabel: "שם פרטי:  " + volunteer.firstName),
+                  CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: " :שם פרטי" + volunteer.firstName,
+                    unitLabel: "שם משפחה:  " + volunteer.lastName,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":שם משפחה" + volunteer.lastName,
+                    unitLabel: volunteer.age() + "  :גיל",
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":גיל" + volunteer.age(),
+                    unitLabel: "תאריך לידה:  " + volunteer.birthDateToView,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":תאריך לידה",
-                  ),
-                  CardSettingsText(
-                    label: "",
-                    style: textStyle,
-                    unitLabel: ":עיר",
+                    unitLabel: "עיר:  " + volunteer.city,
                   ),
                 ],
               ),
