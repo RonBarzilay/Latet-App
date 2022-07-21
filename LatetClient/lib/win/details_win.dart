@@ -25,7 +25,7 @@ class _DetailsWindowState extends State<DetailsWindow> {
     final Volunteer volunteer = widget.volunteer;
     return Scaffold(
       appBar: AppBar(
-        title: Text('צפייה בתדפיס אישי'),
+        title: Text('תדפיס אישי  -  ' + volunteer.fullName),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -35,7 +35,7 @@ class _DetailsWindowState extends State<DetailsWindow> {
             children: <CardSettingsSection>[
               CardSettingsSection(
                 header: CardSettingsHeader(
-                  color: Color(0xFF1D1E33),
+                  // color: Color(0xFF1D1E33),
                   label: "מידע אישי",
                   labelAlign: TextAlign.center,
                 ),
@@ -57,7 +57,8 @@ class _DetailsWindowState extends State<DetailsWindow> {
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: "תאריך לידה:  " + volunteer.birthDateToView,
+                    unitLabel: "תאריך לידה:  " +
+                        volunteer.dateToView(volunteer.birthDate),
                   ),
                   CardSettingsText(
                     label: "",
@@ -68,24 +69,29 @@ class _DetailsWindowState extends State<DetailsWindow> {
               ),
               CardSettingsSection(
                 header: CardSettingsHeader(
-                  label: 'השתייכות',
+                  label: 'כללי',
                   labelAlign: TextAlign.center,
                 ),
                 children: <CardSettingsWidget>[
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":יחידה",
+                    unitLabel: "יחידה:  " + volunteer.unit,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":סוג אוכלוסייה",
+                    unitLabel: "סוג אוכלוסייה:  " + volunteer.populationType,
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":מנהל",
+                    unitLabel: 'השתייכות:  ' + volunteer.association,
+                  ),
+                  CardSettingsText(
+                    label: "",
+                    style: textStyle,
+                    unitLabel: "ת.ז. מנהל:  " + volunteer.managerId.toString(),
                   ),
                 ],
               ),
@@ -98,12 +104,14 @@ class _DetailsWindowState extends State<DetailsWindow> {
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":תחילת ביטוח",
+                    unitLabel: "תחילת ביטוח:  " +
+                        volunteer.dateToView(volunteer.insuranceDateStart),
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":סוף ביטוח",
+                    unitLabel: "סוף ביטוח:  " +
+                        volunteer.dateToView(volunteer.insuranceDateEnd),
                   ),
                 ],
               ),
@@ -116,12 +124,14 @@ class _DetailsWindowState extends State<DetailsWindow> {
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":הגבלת שעות",
+                    unitLabel: volunteer.limitHours.toString() +
+                        "  :מגבלת שעות חודשית",
                   ),
                   CardSettingsText(
                     label: "",
                     style: textStyle,
-                    unitLabel: ":הערות",
+                    unitLabel:
+                        "הערות:  " + volunteer.checkForNotes(volunteer.notes),
                     numberOfLines: 5,
                   ),
                 ],
@@ -133,25 +143,3 @@ class _DetailsWindowState extends State<DetailsWindow> {
     );
   }
 }
-
-//final Volunteer volunteer;
-//   DetailsWindow({Key? key, required this.volunteer}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-
-//   }
-//VolunteerDetails(
-//             firstName: "מאור",
-//             lastName: "זוהר",
-//             age: 20,
-//             birthday: DateUtils.dateOnly(DateTime(2002, 6, 13)),
-//             city: "אשקלון",
-//             limitHours: 50,
-//             unit: "פיקוד מרכז",
-//             endDateInsurance: DateUtils.dateOnly(DateTime(2023, 1, 1)),
-//             manager: "בר סלמן",
-//             notes: "מאור המלך ",
-//             populationType: "גאון",
-//             startDateInsurance: DateUtils.dateOnly(DateTime(2020, 1, 1)),
-//           ),
