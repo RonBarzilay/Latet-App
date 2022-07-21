@@ -17,9 +17,7 @@ class Button extends ElevatedButton {
     required Widget icon,
     required Widget label,
     Widget? child,
-  })  : assert(icon != null),
-        assert(label != null),
-        super(
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,
@@ -51,22 +49,21 @@ class Button extends ElevatedButton {
     Clip clipBehavior = Clip.none,
     required Widget label,
     Widget? child,
-  })  : assert(label != null),
-        super(
+  }) : super(
           key: key,
           onPressed: onPressed,
           onLongPress: onLongPress,
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(162, 70)),
           focusNode: focusNode,
           autofocus: autofocus,
@@ -100,14 +97,14 @@ class Button extends ElevatedButton {
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(300, 70)),
           focusNode: focusNode,
           autofocus: autofocus,
@@ -143,14 +140,14 @@ class Button extends ElevatedButton {
           onHover: onHover,
           onFocusChange: onFocusChange,
           style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreen[10],
+              primary: Color(0xFF4D61BF),
               onPrimary: Colors.white,
-              shadowColor: Colors.lightBlue,
+              // shadowColor: Colors.lightBlue,
               elevation: 8,
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(300, 70)),
           focusNode: focusNode,
           autofocus: autofocus,

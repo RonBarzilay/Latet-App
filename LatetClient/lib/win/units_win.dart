@@ -31,9 +31,13 @@ class UnitsWindow extends StatelessWidget {
         title: const Text('  לתת   |   בחירת יחידה'),
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40),
+          // child: ListWheelScrollView(
+          //   itemExtent: 55,
+          //   clipBehavior: Clip.antiAliasWithSaveLayer,
+          //   diameterRatio: 4,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Row(

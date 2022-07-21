@@ -3,11 +3,39 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/button.dart';
 import 'package:latet/main.dart';
+import 'package:latet/volunteer.dart';
 import 'package:latet/win/reports_win.dart';
 
-class ActionWindow extends StatelessWidget {
+List<Volunteer> fromDynamicToVolunteer(List<dynamic> dynamicVolunteers) {
+  List<Volunteer> volunteers = [];
+  for (var element in dynamicVolunteers) {
+    Volunteer tempVolunteer = Volunteer(
+        element[0],
+        element[1],
+        element[2],
+        element[3],
+        element[4],
+        element[5],
+        element[6],
+        element[7],
+        element[8],
+        element[9],
+        element[10],
+        element[11],
+        element[12]);
+    volunteers.add(tempVolunteer);
+  }
+  return volunteers;
+}
+
+class ActionWindow extends StatefulWidget {
   const ActionWindow({Key? key}) : super(key: key);
 
+  @override
+  State<ActionWindow> createState() => _ActionWindowState();
+}
+
+class _ActionWindowState extends State<ActionWindow> {
   @override
   Widget build(BuildContext context) {
     Widget actionButton(String actionType, IconData icon) {
@@ -24,14 +52,41 @@ class ActionWindow extends StatelessWidget {
           print(request.toString());
           // todo: check which window should be displayed depends on actionType
           if (request.getAction() == 'דיווח נוכחות') {
+            // } else if (actionType == 'דיווח נוכחות') {}
+
             emitAll('reports', request);
-            readAll("get_volunteers_cards");
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const ReportsWindow();
-              // } else if (actionType == 'דיווח נוכחות') {}
-            }));
+
+            readAll('get_volunteers_cards');
+
+            // if volNotifier changed, then print value on change
+            volNotifier.addListener(() {
+              print("A change is detected");
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ReportsWindow(
+                    volunteers: fromDynamicToVolunteer(volNotifier.value));
+              }));
+              // Navigator.removeRoute(
+              //   context,
+              // );
+              // Navigator.pushAndRemoveUntil(context,
+              //     MaterialPageRoute(builder: (context) {
+              //   return ReportsWindow(
+              //       volunteers: fromDynamicToVolunteer(volNotifier.value));
+              // }));
+            });
           }
         },
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //     return const ReportsWindow(volunteers: fromDynamicToVolunteer(volNotifier.value));
+        //
+        // }));
+
+        // final dynamicVolunteers = await readAll('get_volunteers_cards');
+
+        // volunteersData.set_volunteersList(data);
+        // print(volunteersDataNotifier.value);
+        // print value on change
         icon: Icon(
           icon,
           size: 30.0,
