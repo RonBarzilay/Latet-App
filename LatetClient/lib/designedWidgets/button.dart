@@ -63,7 +63,7 @@ class Button extends ElevatedButton {
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(162, 70)),
           focusNode: focusNode,
           autofocus: autofocus,
@@ -104,7 +104,7 @@ class Button extends ElevatedButton {
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(300, 70)),
           focusNode: focusNode,
           autofocus: autofocus,
@@ -147,7 +147,7 @@ class Button extends ElevatedButton {
               textStyle:
                   TextStyle(fontFamily: 'VarelaRound-Regular', fontSize: 16.0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                  borderRadius: BorderRadius.circular(10.0)),
               minimumSize: Size(300, 70)),
           focusNode: focusNode,
           autofocus: autofocus,
