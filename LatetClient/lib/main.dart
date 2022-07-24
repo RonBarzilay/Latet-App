@@ -71,7 +71,7 @@ void readAll(String event) {
   // appSocket.on(event, (data) => print(data));
 
   appSocket.on(event, (data) {
-    print('appSocket');
+    print('appSocket ');
     volNotifier.value = data;
   });
 
