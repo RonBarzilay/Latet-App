@@ -5,6 +5,7 @@ import 'package:latet/client_request.dart';
 import 'package:latet/win/action_win.dart';
 import 'package:latet/win/population_win.dart';
 import 'package:latet/win/units_win.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 /// ==============================================
@@ -101,6 +102,18 @@ class LatetApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        builder: (context, child) => ResponsiveWrapper.builder(
+              child,
+              maxWidth: 4000,
+              minWidth: 480,
+              defaultScale: true,
+              breakpoints: [
+                ResponsiveBreakpoint.resize(480, name: MOBILE),
+                ResponsiveBreakpoint.autoScale(1200, name: TABLET),
+                ResponsiveBreakpoint.resize(3000, name: DESKTOP),
+              ],
+            ),
+
         // ThemeData is the Graphics for all windows
         theme: ThemeData(
             scaffoldBackgroundColor: const Color(0xFF1B2B3F),

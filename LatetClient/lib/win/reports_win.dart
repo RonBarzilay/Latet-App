@@ -52,6 +52,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
               '  ${request.getUnit()}    |   ${request.getPopulationType()}'),
         ),
         body: SingleChildScrollView(
+          //child: AspectRatio(aspectRatio: 16/9,
           child: Container(
             alignment: Alignment.center,
             child: Padding(
@@ -63,6 +64,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
               ),
             ),
           ),
+          //),
         ));
   }
 }
