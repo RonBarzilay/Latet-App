@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/button.dart';
 import 'package:latet/main.dart';
-import 'package:latet/win/population_win.dart';
 
 class UnitsWindow extends StatelessWidget {
   const UnitsWindow({Key? key}) : super(key: key);
@@ -18,9 +17,7 @@ class UnitsWindow extends StatelessWidget {
         onPressed: () async {
           // For writing user's choices to server
           request.setUnit(unit);
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const PopulationWindow();
-          }));
+          Navigator.pushNamed(context, 'אוכלוסיות/');
         },
         label: Text(label),
       ));

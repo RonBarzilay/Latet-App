@@ -30,6 +30,8 @@ logic = Logic()
 app.config['SECRET_KEY'] = "@latet@secret@111"
 # todo: ``'*'`` to allow all origins, or to ``[]`` to disable CORS handling.
 socketio = SocketIO(app, cors_allowed_origins='*')
+
+
 # print("socketio1", socketio)
 
 
@@ -54,16 +56,18 @@ def disconnect():
 def return_reports(data):
     socketio.emit('get_volunteers_cards', get_volunteers("'" + data['unit'] + "'", "'" + data['populationType'] + "'"))
 
+
+
 # print(data)
-    # match data:
-    #     case 'פקמ"ז הוצל"א':
-    #         print('פקמ"ז הוצל"א')
-    #     case 'פקמ"ז מטבח':
-    #         print('פקמ"ז מטבח')
-    #     case 'יט"ד בצ"פ 382':
-    #         print('יט"ד בצ"פ 382')
-    #     case 'בא"פ לכיש':
-    #         print('בא"פ לכיש')
+# match data:
+#     case 'פקמ"ז הוצל"א':
+#         print('פקמ"ז הוצל"א')
+#     case 'פקמ"ז מטבח':
+#         print('פקמ"ז מטבח')
+#     case 'יט"ד בצ"פ 382':
+#         print('יט"ד בצ"פ 382')
+#     case 'בא"פ לכיש':
+#         print('בא"פ לכיש')
 
 
 # @socketio.on("checkVolStatus")

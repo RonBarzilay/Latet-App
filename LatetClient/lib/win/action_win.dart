@@ -7,7 +7,7 @@ import 'package:latet/volunteer.dart';
 import 'package:latet/win/reports_win.dart';
 
 List<Volunteer> fromDynamicToVolunteer(List<dynamic> dynamicVolunteers) {
-  List<Volunteer> volunteers = [];
+  List<Volunteer>? volunteers = [];
   for (var element in dynamicVolunteers) {
     Volunteer tempVolunteer = Volunteer(
         element[0],
@@ -38,6 +38,19 @@ class ActionWindow extends StatefulWidget {
 class _ActionWindowState extends State<ActionWindow> {
   @override
   Widget build(BuildContext context) {
+    // if volNotifier changed, then print value on change
+
+    volNotifier.addListener(() {
+      print("A change is detected ");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ReportsWindow(
+                  volunteers: fromDynamicToVolunteer(volNotifier.value)),
+              settings:
+                  const RouteSettings(name: 'דיווח-נוכחות/פעולות/אוכלוסיות')));
+    });
+
     Widget actionButton(String actionType, IconData icon) {
       /// actionButton creates button Widget with populationn_icon instance
       /// from Button class.
@@ -57,26 +70,9 @@ class _ActionWindowState extends State<ActionWindow> {
             emitAll('reports', request);
 
             readAll('get_volunteers_cards');
-
-            // if volNotifier changed, then print value on change
-            volNotifier.addListener(() {
-              print("A change is detected");
-
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ReportsWindow(
-                    volunteers: fromDynamicToVolunteer(volNotifier.value));
-              }));
-              // Navigator.removeRoute(
-              //   context,
-              // );
-              // Navigator.pushAndRemoveUntil(context,
-              //     MaterialPageRoute(builder: (context) {
-              //   return ReportsWindow(
-              //       volunteers: fromDynamicToVolunteer(volNotifier.value));
-              // }));
-            });
           }
         },
+
         //   Navigator.push(context, MaterialPageRoute(builder: (context) {
         //     return const ReportsWindow(volunteers: fromDynamicToVolunteer(volNotifier.value));
         //

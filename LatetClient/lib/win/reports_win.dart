@@ -33,18 +33,6 @@ class _ReportsWindowState extends State<ReportsWindow> {
   }
 
   Widget build(BuildContext context) {
-    // print("helloooooooooo ${widget.volunteers.toString()}");
-    // print(recievedVolunteersData.getVolunteersListLength());
-    // void generateCard(List<VolunteersData> volunteers){
-    //   for (int i=0; i<volunteers.length; i++) {
-    //     cards.add(
-    //         CustomizedCard(
-    //           fullName: volunteers[i].get
-    //           volunteerId: 111111111,
-    //         )
-    //     )
-    //   }
-    // }
     volunteersToCustomizedCard(widget.volunteers, context);
     return Scaffold(
         appBar: AppBar(

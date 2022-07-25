@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latet/designedWidgets/button.dart';
 import 'package:latet/main.dart';
-import 'package:latet/win/action_win.dart';
 
 class PopulationWindow extends StatelessWidget {
   const PopulationWindow({Key? key}) : super(key: key);
@@ -17,9 +16,10 @@ class PopulationWindow extends StatelessWidget {
         onPressed: () async {
           // For writing user's choice to server3
           request.setPopulationType(populationType);
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const ActionWindow();
-          }));
+          Navigator.pushNamed(context, 'פעולות/אוכלוסיות');
+          // Navigator.push(context, MaterialPageRoute(builder: (context) {
+          //   return const ActionWindow();
+          // }));
         },
         label: Text(populationType),
       );

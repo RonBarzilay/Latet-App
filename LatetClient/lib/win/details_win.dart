@@ -128,6 +128,7 @@ class _DetailsWindowState extends State<DetailsWindow> {
                         "  :מגבלת שעות חודשית",
                   ),
                   CardSettingsText(
+                    fieldPadding: EdgeInsets.symmetric(horizontal: 2),
                     label: "",
                     style: textStyle,
                     unitLabel:

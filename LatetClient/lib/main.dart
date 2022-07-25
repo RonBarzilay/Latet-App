@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:latet/client_request.dart';
 import 'package:latet/win/action_win.dart';
 import 'package:latet/win/population_win.dart';
+import 'package:latet/win/reports_win.dart';
 import 'package:latet/win/units_win.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -69,18 +70,29 @@ void readAll(String event) {
   /// On event type [event] - read data [data].
 
   // appSocket.on(event, (data) => print(data));
-
   appSocket.on(event, (data) {
     print('appSocket');
-    volNotifier.value = data;
+    try {
+      volNotifier.value = data;
+    } on Exception catch (exception) {
+      print(exception);
+    } catch (error) {
+      print(error);
+    }
   });
 
   webSocket.on(event, (data) {
     print('webSocket');
-    volNotifier.value = data;
+    try {
+      volNotifier.value = data ?? "";
+    } on Exception catch (exception) {
+      print(exception);
+    } catch (error) {
+      print(error);
+    }
   });
-  // return completer.future;
 }
+// return completer.future;
 //
 //   // appSocket.on(event, (data) => print(data));
 //   // print("New data read from event: $event");
@@ -101,21 +113,25 @@ class LatetApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // ThemeData is the Graphics for all windows
-        theme: ThemeData(
-            scaffoldBackgroundColor: const Color(0xFF1B2B3F),
-            appBarTheme: const AppBarTheme(
-              color: Color(0x6D1D1E33),
-              centerTitle: true,
-              titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
-            )),
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/',
-        routes: {
-          '/UnitsWindow': (context) => const UnitsWindow(),
-          '/PopulationWindow': (context) => const PopulationWindow(),
-          '/ActionWindow': (context) => const ActionWindow(),
-        },
-        home: const UnitsWindow());
+      title: 'לתת',
+      // ThemeData is the Graphics for all windows
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFF1B2B3F),
+          appBarTheme: const AppBarTheme(
+            color: Color(0x6D1D1E33),
+            centerTitle: true,
+            titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
+          )),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const UnitsWindow(),
+        'אוכלוסיות/': (context) => const PopulationWindow(),
+        'פעולות/אוכלוסיות': (context) => const ActionWindow(),
+        'דיווח-נוכחות/פעולות/אוכלוסיות': (context) =>
+            ReportsWindow(volunteers: []),
+      },
+    );
+    // home: const UnitsWindow());
   }
 }
