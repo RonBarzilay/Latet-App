@@ -64,7 +64,7 @@ void emitAll(String event, [data]) {
   appSocket.emit(event, data);
 }
 
-void readAll(String event) {
+void readAll(String event) async {
   /// readAll (Read) for all clients from server - app & web.
   ///
   /// On event type [event] - read data [data].
