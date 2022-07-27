@@ -94,7 +94,7 @@ void readAll(String event) {
 //   // });
 // }
 
-void main() => runApp(LatetApp());
+void main() => runApp(const LatetApp());
 
 class LatetApp extends StatelessWidget {
   const LatetApp({Key? key}) : super(key: key);
@@ -104,13 +104,13 @@ class LatetApp extends StatelessWidget {
     return MaterialApp(
         builder: (context, child) => ResponsiveWrapper.builder(
               child,
-              maxWidth: 4000,
-              minWidth: 480,
+              maxWidth: 5000,
+              minWidth: 800,
               defaultScale: true,
               breakpoints: [
-                ResponsiveBreakpoint.resize(480, name: MOBILE),
-                ResponsiveBreakpoint.autoScale(1200, name: TABLET),
-                ResponsiveBreakpoint.resize(3000, name: DESKTOP),
+                const ResponsiveBreakpoint.resize(800, name: MOBILE),
+                //ResponsiveBreakpoint.resize(100, name: DESKTOP),
+                const ResponsiveBreakpoint.autoScale(1700),
               ],
             ),
 
