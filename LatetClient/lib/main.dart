@@ -6,6 +6,7 @@ import 'package:latet/win/action_win.dart';
 import 'package:latet/win/population_win.dart';
 import 'package:latet/win/reports_win.dart';
 import 'package:latet/win/units_win.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 /// ==============================================
@@ -105,7 +106,7 @@ void readAll(String event) {
 //   // });
 // }
 
-void main() => runApp(LatetApp());
+void main() => runApp(const LatetApp());
 
 class LatetApp extends StatelessWidget {
   const LatetApp({Key? key}) : super(key: key);
@@ -113,6 +114,34 @@ class LatetApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        builder: (context, child) => ResponsiveWrapper.builder(
+              child,
+              maxWidth: 5000,
+              minWidth: 800,
+              defaultScale: true,
+              breakpoints: [
+                const ResponsiveBreakpoint.resize(800, name: MOBILE),
+                //ResponsiveBreakpoint.resize(100, name: DESKTOP),
+                const ResponsiveBreakpoint.autoScale(1700),
+              ],
+            ),
+
+        // ThemeData is the Graphics for all windows
+        theme: ThemeData(
+            scaffoldBackgroundColor: const Color(0xFF1B2B3F),
+            appBarTheme: const AppBarTheme(
+              color: Color(0x6D1D1E33),
+              centerTitle: true,
+              titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
+            )),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/UnitsWindow': (context) => const UnitsWindow(),
+          '/PopulationWindow': (context) => const PopulationWindow(),
+          '/ActionWindow': (context) => const ActionWindow(),
+        },
+        home: const UnitsWindow());
       title: 'לתת',
       // ThemeData is the Graphics for all windows
       theme: ThemeData(
