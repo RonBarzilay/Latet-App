@@ -80,6 +80,7 @@ class DBLatet:
                 print("PostgreSQL connection is closed")
 
     def select_from_volunteer_table(self, unit, populationType):
+        # TODO: add status
         try:
             connection, cursor = connect_to_database()
             cursor.execute(f'SELECT id, first_name, last_name, birth_date, city, unit, population_type, manager_id, insurance_date_start, insurance_date_end, limit_hours, association, notes FROM "Volunteer" WHERE "unit"={unit} AND "population_type"={populationType} ORDER BY last_name ASC')

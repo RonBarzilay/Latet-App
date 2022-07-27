@@ -32,7 +32,8 @@ def serialize_volunteers_data(volunteers_list):
             if item is None:
                 volunteers_list[vol_index][item_index] = ""
             if isinstance(item, datetime.date):
-                volunteers_list[vol_index][item_index] = json.dumps(item, indent=4, sort_keys=True, default=str).replace('"', '')
+                volunteers_list[vol_index][item_index] = json.dumps(item, indent=4, sort_keys=True,
+                                                                    default=str).replace('"', '')
     return volunteers_list
 
 
@@ -40,10 +41,9 @@ def get_volunteers(unit, populationType):
     return serialize_volunteers_data(db.select_from_volunteer_table(unit, populationType))
 
 
-
-
 def get_voluteers_details(id):
     return db.select_details_from_volunteer_table(id)
+
 
 class Logic:
     def __init__(self):

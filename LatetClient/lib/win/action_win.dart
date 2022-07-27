@@ -22,7 +22,9 @@ List<Volunteer> fromDynamicToVolunteer(List<dynamic> dynamicVolunteers) {
         element[9],
         element[10],
         element[11],
-        element[12]);
+        element[12],
+        // TODO: instead of false set element[13]
+        false);
     volunteers.add(tempVolunteer);
   }
   return volunteers;

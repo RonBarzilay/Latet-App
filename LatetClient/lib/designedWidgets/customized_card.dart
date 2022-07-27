@@ -41,76 +41,122 @@ class CustomizedCard extends Card {
             borderRadius: BorderRadius.circular(7.0),
           ),
           key: key,
-          child: TextButton(
-            child: Row(
-                textDirection: TextDirection.rtl,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    flex: 1,
-                    child: Icon(
-                      Icons.account_circle,
-                      color: Color(0xFF4D61BF),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                        textDirection: TextDirection.rtl,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            volunteer.fullName,
-                            style: buttonTextStyle,
-                            textAlign: TextAlign.right,
-                            textDirection: TextDirection.rtl,
-                          ),
-                          const SizedBox(height: 3.5),
-                          Text(
-                            volunteer.id.toString(),
-                            style: buttonSubTextStyle,
-                            textAlign: TextAlign.right,
-                            textDirection: TextDirection.rtl,
-                          )
-                        ]),
-                    // style: buttonTextStyle,
-                  ),
-                  // ),
-                  // Row(children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      child: TextButton(
-                        onPressed: () {
-                          // checkVolStatus(fullName);
-                        },
-                        style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.white38),
-                            // minimumSize: MaterialStateProperty.all(Size(20, 12)),
-                            backgroundColor:
-                                MaterialStateProperty.all(Color(0x7B79D825))),
-                        child: Text("התחל\nנוכחות",
-                            style: buttonTextStyle,
-                            textAlign: TextAlign.center),
-                      ),
-                    ),
-                  ),
-                ]),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DetailsWindow(volunteer: volunteer);
-                  },
-                ),
-              );
-            },
+          child: TextButtonStateul(
+            volunteer: volunteer,
           ),
           //   ],
           // ),
         );
+}
+
+class TextButtonStateul extends StatefulWidget {
+  final Volunteer volunteer;
+  TextButtonStateul({Key? key, required this.volunteer}) : super(key: key);
+
+  @override
+  State<TextButtonStateul> createState() => _TextButtonStateulState();
+}
+
+class _TextButtonStateulState extends State<TextButtonStateul> {
+  @override
+  Widget build(BuildContext context) {
+    String btnText() {
+      if (!widget.volunteer.status) {
+        // TODO: Enter this text to constants
+        return 'התחל\nנוכחות';
+      }
+      return 'סיים\nנוכחות';
+    }
+
+    void changeBtnStatus() {
+      setState(() {
+        widget.volunteer.status = !widget.volunteer.status;
+      });
+    }
+
+    ButtonStyle falseStatusButtonStyle = ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.white38),
+// minimumSize: MaterialStateProperty.all(Size(20, 12)),
+        backgroundColor: MaterialStateProperty.all(Color(0x7B79D825)));
+
+    ButtonStyle trueStatusButtonStyle = ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.white38),
+// minimumSize: MaterialStateProperty.all(Size(20, 12)),
+        backgroundColor: MaterialStateProperty.all(Color(0x85FF4C20)));
+
+    ButtonStyle changeBtnColor() {
+      if (widget.volunteer.status) {
+        return trueStatusButtonStyle;
+      } else {
+        return falseStatusButtonStyle;
+      }
+    }
+
+    return TextButton(
+      child: Row(
+          textDirection: TextDirection.rtl,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Expanded(
+              flex: 1,
+              child: Icon(
+                Icons.account_circle,
+                color: Color(0xFF4D61BF),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Column(
+                  textDirection: TextDirection.rtl,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.volunteer.fullName,
+                      style: buttonTextStyle,
+                      textAlign: TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                    ),
+                    const SizedBox(height: 3.5),
+                    Text(
+                      widget.volunteer.id.toString(),
+                      style: buttonSubTextStyle,
+                      textAlign: TextAlign.right,
+                      textDirection: TextDirection.rtl,
+                    )
+                  ]),
+              // style: buttonTextStyle,
+            ),
+            // ),
+            // Row(children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                margin: const EdgeInsets.only(left: 20),
+                child: TextButton(
+                  onPressed: () {
+                    changeBtnStatus();
+                    changeBtnColor();
+                    // TODO: change button color
+                    // checkVolStatus(fullName);
+                  },
+                  style: changeBtnColor(),
+                  child: Text(btnText(),
+                      style: buttonTextStyle, textAlign: TextAlign.center),
+                ),
+              ),
+            ),
+          ]),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return DetailsWindow(volunteer: widget.volunteer);
+            },
+          ),
+        );
+      },
+    );
+  }
 }

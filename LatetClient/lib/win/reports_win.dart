@@ -27,6 +27,7 @@ class _ReportsWindowState extends State<ReportsWindow> {
       CustomizedCard tempCard = CustomizedCard(
         volunteer: volunteer,
         context: context,
+        // TODO:  Depends on server, decide what's the status of the button
       );
       cards.add(tempCard);
     }

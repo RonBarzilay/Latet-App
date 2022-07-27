@@ -14,6 +14,7 @@ class Volunteer {
   late final int _limitHours;
   late final String _association;
   late final String _notes;
+  bool _status = false;
 
   Volunteer(
       this._id,
@@ -28,7 +29,8 @@ class Volunteer {
       this._insuranceDateEnd,
       this._limitHours,
       this._association,
-      this._notes);
+      this._notes,
+      this._status);
 
   Volunteer.setVolunteer(Volunteer vol) {
     vol._id = this._id;
@@ -44,6 +46,7 @@ class Volunteer {
     vol._limitHours = this._limitHours;
     vol._association = this._association;
     vol._notes = this._notes;
+    vol._status = this.status;
   }
 
   String get notes => _notes;
@@ -144,8 +147,15 @@ class Volunteer {
   }
 
   String get fullName => "$_firstName $_lastName";
+
+  bool get status => _status;
+
+  set status(bool value) {
+    _status = value;
+  }
+
   @override
   String toString() {
-    return 'Volunteer{id: $_id, firstName: $_firstName, lastName: $_lastName, birthDate: $_birthDate, city: $_city, unit: $_unit, populationType: $_populationType, managerId: $_managerId, insuranceDateStart: $_insuranceDateStart, insuranceDateEnd: $_insuranceDateEnd, limitHours: $_limitHours, association: $_association, notes: $_notes}';
+    return 'Volunteer{_id: $_id, _firstName: $_firstName, _lastName: $_lastName, _birthDate: $_birthDate, _city: $_city, _unit: $_unit, _populationType: $_populationType, _managerId: $_managerId, _insuranceDateStart: $_insuranceDateStart, _insuranceDateEnd: $_insuranceDateEnd, _limitHours: $_limitHours, _association: $_association, _notes: $_notes, _status: $_status}';
   }
 }
