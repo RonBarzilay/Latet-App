@@ -127,14 +127,27 @@ class _DetailsWindowState extends State<DetailsWindow> {
                     unitLabel: volunteer.limitHours.toString() +
                         "  :מגבלת שעות חודשית",
                   ),
-                  CardSettingsText(
-                    fieldPadding: EdgeInsets.symmetric(horizontal: 2),
-                    label: "",
-                    style: textStyle,
-                    unitLabel:
-                        "הערות:  " + volunteer.checkForNotes(volunteer.notes),
-                    numberOfLines: 5,
-                  ),
+                  CardSettingsField(
+                      content: Text(
+                          'הערות: ' + volunteer.checkForNotes(volunteer.notes),
+                          textAlign: TextAlign.end),
+                      labelAlign: TextAlign.end,
+                      label: '',
+                      labelWidth: 0,
+                      requiredIndicator: Text(''),
+                      fieldPadding: EdgeInsets.all(7))
+                  // CardSettingsText(
+                  //
+                  //   fieldPadding: EdgeInsets.only(right: 100),
+                  //   contentAlign: TextAlign.center,
+                  //   style: textStyle,
+                  //   // labelAlign: TextAlign.start,
+                  //   label: '',
+                  //   labelWidth: 0,
+                  //   unitLabel: volunteer.checkForNotes(volunteer.notes),
+                  //   // unitLabel: volunteer.checkForNotes(volunteer.notes),
+                  //   numberOfLines: 6,
+                  // ),
                 ],
               ),
             ],
