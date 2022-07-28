@@ -6,7 +6,6 @@ import 'package:latet/win/action_win.dart';
 import 'package:latet/win/population_win.dart';
 import 'package:latet/win/reports_win.dart';
 import 'package:latet/win/units_win.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 /// ==============================================
@@ -81,11 +80,10 @@ void readAll(String event) {
       print(error);
     }
   });
-
   webSocket.on(event, (data) {
     print('webSocket');
     try {
-      volNotifier.value = data ?? "";
+      volNotifier.value = data;
     } on Exception catch (exception) {
       print(exception);
     } catch (error) {
@@ -93,18 +91,6 @@ void readAll(String event) {
     }
   });
 }
-// return completer.future;
-//
-//   // appSocket.on(event, (data) => print(data));
-//   // print("New data read from event: $event");
-//   // appSocket.on(event, (data) {
-//   //   if (kDebugMode) {
-//   //     print(data);
-//   //   }
-//   //   final dataList = data as List;
-//   //   setx(dataList);
-//   // });
-// }
 
 void main() => runApp(const LatetApp());
 
@@ -116,17 +102,17 @@ class LatetApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'לתת',
-      builder: (context, child) => ResponsiveWrapper.builder(
-        child,
-        maxWidth: 5000,
-        minWidth: 800,
-        defaultScale: true,
-        breakpoints: [
-          const ResponsiveBreakpoint.resize(800, name: MOBILE),
-          //ResponsiveBreakpoint.resize(100, name: DESKTOP),
-          const ResponsiveBreakpoint.autoScale(1700),
-        ],
-      ),
+      // builder: (context, child) => ResponsiveWrapper.builder(
+      //   child,
+      //   maxWidth: 5000,
+      //   minWidth: 800,
+      //   defaultScale: true,
+      //   breakpoints: [
+      //     const ResponsiveBreakpoint.resize(800, name: MOBILE),
+      //     //ResponsiveBreakpoint.resize(100, name: DESKTOP),
+      //     const ResponsiveBreakpoint.autoScale(1700),
+      //   ],
+      // ),
       // ThemeData is the Graphics for all windows
       theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFF1B2B3F),

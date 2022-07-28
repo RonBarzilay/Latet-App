@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latet/main.dart';
 import 'package:latet/volunteer.dart';
 import 'package:latet/win/details_win.dart';
 
@@ -60,6 +61,15 @@ class TextButtonStateul extends StatefulWidget {
 class _TextButtonStateulState extends State<TextButtonStateul> {
   @override
   Widget build(BuildContext context) {
+    // TODO: Move to constants
+    ButtonStyle falseStatusButtonStyle = ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.white38),
+        backgroundColor: MaterialStateProperty.all(Color(0x7B79D825)));
+
+    ButtonStyle trueStatusButtonStyle = ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.white38),
+        backgroundColor: MaterialStateProperty.all(Color(0x85FF4C20)));
+
     String btnText() {
       if (!widget.volunteer.status) {
         // TODO: Enter this text to constants
@@ -74,21 +84,19 @@ class _TextButtonStateulState extends State<TextButtonStateul> {
       });
     }
 
-    ButtonStyle falseStatusButtonStyle = ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.white38),
-// minimumSize: MaterialStateProperty.all(Size(20, 12)),
-        backgroundColor: MaterialStateProperty.all(Color(0x7B79D825)));
-
-    ButtonStyle trueStatusButtonStyle = ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.white38),
-// minimumSize: MaterialStateProperty.all(Size(20, 12)),
-        backgroundColor: MaterialStateProperty.all(Color(0x85FF4C20)));
-
     ButtonStyle changeBtnColor() {
       if (widget.volunteer.status) {
         return trueStatusButtonStyle;
       } else {
         return falseStatusButtonStyle;
+      }
+    }
+
+    void updateServerOnChange() {
+      if (widget.volunteer.status == false) {
+        emitAll('start_report', [widget.volunteer.id]);
+      } else {
+        emitAll('stop_report', [widget.volunteer.id]);
       }
     }
 
@@ -135,9 +143,11 @@ class _TextButtonStateulState extends State<TextButtonStateul> {
                 margin: const EdgeInsets.only(left: 20),
                 child: TextButton(
                   onPressed: () {
+                    // Before changing button's status, send message about current status to server
+                    updateServerOnChange();
                     changeBtnStatus();
                     changeBtnColor();
-                    // TODO: change button color
+
                     // checkVolStatus(fullName);
                   },
                   style: changeBtnColor(),

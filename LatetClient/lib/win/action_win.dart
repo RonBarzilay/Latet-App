@@ -7,7 +7,7 @@ import 'package:latet/volunteer.dart';
 import 'package:latet/win/reports_win.dart';
 
 List<Volunteer> fromDynamicToVolunteer(List<dynamic> dynamicVolunteers) {
-  List<Volunteer>? volunteers = [];
+  List<Volunteer> volunteers = [];
   for (var element in dynamicVolunteers) {
     Volunteer tempVolunteer = Volunteer(
         element[0],

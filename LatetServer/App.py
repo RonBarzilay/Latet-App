@@ -13,12 +13,10 @@ from Logic import *
            Variables Declaration
  ==============================================
 '''
-
 app = Flask(import_name="latet")
 app.config['SECRET_KEY'] = "@latet@secret@111"
 users = []
 connected_clients = 0
-logic = Logic()
 # app.debug = True
 
 
@@ -30,9 +28,10 @@ logic = Logic()
 app.config['SECRET_KEY'] = "@latet@secret@111"
 # todo: ``'*'`` to allow all origins, or to ``[]`` to disable CORS handling.
 socketio = SocketIO(app, cors_allowed_origins='*')
-
+logic = Logic()
 
 # print("socketio1", socketio)
+
 
 
 @socketio.on('connect')
@@ -54,8 +53,23 @@ def disconnect():
 
 @socketio.on("reports")
 def return_reports(data):
-    socketio.emit('get_volunteers_cards', get_volunteers("'" + data['unit'] + "'", "'" + data['populationType'] + "'"))
+    # print(get_volunteers("'" + data['unit'] + "'", "'" + data['populationType'] + "'"))
+    socketio.emit('get_volunteers_cards',
+                  logic.get_volunteers("'" + data['unit'] + "'", "'" + data['populationType'] + "'"))
 
+
+@socketio.on("start_report")
+def start_report(volunteer_id):
+    logic.create_and_append_report(volunteer_id)
+    print('start report button has pressed')
+    # socketio.emit('message', 'הוצל"א פקמ"ז')
+
+
+@socketio.on("stop_report")
+def stop_report(volunteer_id):
+    logic.remove_and_send_report(volunteer_id)
+    print('stop report button has pressed')
+    # socketio.emit('message', 'הוצל"א פקמ"ז')
 
 
 # print(data)
